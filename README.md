@@ -15,7 +15,6 @@ This sample shows how to get new users in the Azure Active Directory and add the
     },
     "watchDirectories": [ "Shared" ]
     }
-
     ```
 
 1. Register an app to Azure Active Directory to handle authentication for the deamon app: [Optional: configure app-only authentication](https://docs.microsoft.com/en-us/graph/tutorials/javascript?tabs=aad&tutorial-step=7)
