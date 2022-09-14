@@ -274,6 +274,8 @@ To debug our onboarding experience, we'll need run our functions locally and cre
 1. Once the *OnboardingFunction* runs successfully, you should be able to see `Jane Doe` as a member of the Onboarding team on Microsoft Teams! 🥳
 ![new member in Onboarding team on Microsoft Teams](/images/new-member-onboarding.png)
 
+Source code for this solution can be found in the following GitHub Repository: [Onboarding-Functions](https://github.com/aycabas/Onboarding-Functions)
+
 ## 📚 Resources
 - [Microsoft Graph Fundamentals](https://aka.ms/learn-graph)
 - [Get change notifications delivered in different ways](https://docs.microsoft.com/en-us/graph/change-notifications-delivery)
