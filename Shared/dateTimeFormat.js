@@ -1,19 +1,19 @@
+let month = undefined;
+let day = undefined;
+let hour = undefined;
+let minute = undefined;
+let second = undefined;
+const date = new Date();
+const year = date.getFullYear();
+let expiryAsync = undefined;
 async function getDateTimeAsync(){
-    let month = undefined;
-    let day = undefined;
-    let hour = undefined;
-    let minute = undefined;
-    let second = undefined;
-    const date = new Date();
-    const year = date.getFullYear();
-    let expiryAsync = undefined;
+
     if(date.getMonth() + 1 < 10){
         let currentMonth = date.getMonth() + 1;
         month = '0' + currentMonth;
     }
     else{
-        month = date.getMonth() + 1;
-        
+        month = date.getMonth() + 1;  
     }
     if(date.getDate() < 10){
         day = '0' + date.getDate();
@@ -26,8 +26,7 @@ async function getDateTimeAsync(){
         hour = '0' + hourlater;
     }
     else{
-       hour = date.getHours() + 1;
-        
+       hour = date.getHours() + 1;  
     }
     if(date.getMinutes() < 10){
         minute = '0' + date.getMinutes();
