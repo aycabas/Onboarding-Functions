@@ -4,6 +4,14 @@ This sample shows how to get new users in the Azure Active Directory and add the
 
 ![Solution architecture](/images/architecture-functions.png)
 
+## Pre-requisites
+- [Microsoft 365 Developer Program account](https://aka.ms/m365developers)
+- [Microsoft Azure Subscription](https://azure.microsoft.com/en-us/free/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [Azure Functions Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
+- [Azure Storage Emulator](https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409)
+
+## Run the project
 1. Create Azure Event Hubs and Key Vault to get Microsoft Graph Change Notifications delivered: [Get change notifications delivered in different ways](https://docs.microsoft.com/en-us/graph/change-notifications-delivery)
 
 1. Create `local.settings.json` file in your code and add the following code snippet by updating the Event Hub connection string:
@@ -28,7 +36,11 @@ This sample shows how to get new users in the Azure Active Directory and add the
     ```
     npm install @azure/identity @microsoft/microsoft-graph-client isomorphic-fetch readline-sync
     ```
-1. Run your app by selecting **F5** or **Run and Debug** console.
+1. Open the terminal in Visual Studio Code and run your functions with the following command:
+    ```
+    func host start
+    ```
+    >Make sure that Microsoft Azure Storage Emulator is running in the background.
 
 ## Code Structure
 
