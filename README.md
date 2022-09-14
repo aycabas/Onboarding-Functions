@@ -36,20 +36,14 @@ This sample shows how to get new users in the Azure Active Directory and add the
     ```
     npm install @azure/identity @microsoft/microsoft-graph-client isomorphic-fetch readline-sync
     ```
-1. Open the terminal in Visual Studio Code and run your functions with the following command:
-    ```
-    func host start
-    ```
-    >Make sure that Microsoft Azure Storage Emulator is running in the background.
-
-## Debug your project
-To debug the onboarding functions, you need run the functions locally and create a new user in Azure Active Directory to see if the new user is added automatically in Microsoft Teams Onboarding team.
 
 1. Open the terminal in Visual Studio Code and run your functions with the following command:
     ```
     func host start
     ```
     >Make sure that Microsoft Azure Storage Emulator is running in the background.
+
+## Test the project
 
 1. Go to [Azure Portal](https://portal.azure.com) and select Azure Active Directory from the left pane and go to **Users**. Select **+ New user** and **Create new user**. Fill in the details.
 
