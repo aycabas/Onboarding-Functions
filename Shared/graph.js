@@ -7,8 +7,6 @@ const authProviders = require('@microsoft/microsoft-graph-client/authProviders/a
 let _clientSecretCredential = undefined;
 let _appClient = undefined;
 let _expiry = undefined;
-let _subscription = undefined;
-let _subscriptionTpye = undefined;
 let _memberId = undefined;
 function ensureGraphForAppOnlyAuth() {
 
@@ -55,14 +53,13 @@ async function postSubscriptionAsync() {
 }
 
 
-
 async function postTeamsMemberAsync(memberId) {
     ensureGraphForAppOnlyAuth();
     _memberId = memberId;
     const user = 'https://graph.microsoft.com/v1.0/users(\'' + _memberId +'\')';
     const conversationMember = {
         '@odata.type': '#microsoft.graph.aadUserConversationMember',
-        roles: ['owner'],
+        roles: [],
         'user@odata.bind': user
     };
     

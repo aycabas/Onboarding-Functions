@@ -2,6 +2,8 @@
 
 This sample shows how to get new users in the Azure Active Directory and add them in Onboarding team on Microsoft Teams.
 
+![Solution architecture](/images/architecture-functions.png)
+
 1. Create Azure Event Hubs and Key Vault to get Microsoft Graph Change Notifications delivered: [Get change notifications delivered in different ways](https://docs.microsoft.com/en-us/graph/change-notifications-delivery)
 
 1. Create `local.settings.json` file in your code and add the following code snippet by updating the Event Hub connection string:

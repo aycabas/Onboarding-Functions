@@ -11,17 +11,10 @@ module.exports = async function (context, myTimer) {
     }
     context.log('JavaScript timer trigger function ran!', timeStamp);   
 
-    // Get users
-    // const userPage = await auth.getUsersAsync();
-    // const users = userPage.value;
-    // for (const user of users) {
-    //     console.log(`User: ${user.displayName ?? 'NO NAME'}`);
-    //     console.log(`  ID: ${user.id}`);
-    //     console.log(`  Email: ${user.mail ?? 'NO EMAIL'}`);
-    //   }
-
-    
+    //triggering subscription function
     const subscription = await graph.postSubscriptionAsync();
+    
+    //Optional
     console.log(`Subscription: ${subscription.id}`);
     console.log(`  Resource: ${subscription.resource}`);
     console.log(`  ChangeType: ${subscription.changeType}`);
