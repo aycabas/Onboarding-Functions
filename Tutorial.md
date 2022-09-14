@@ -87,7 +87,7 @@ To create subscription for Microsoft Graph Change Notifications, we'll need to m
 1. Go to **Overview** from the left pane, copy *Application (client) ID* and *Directory (tenant) ID*.
 
 ### 2️⃣ Create subscription with Azure Functions
-1. Open Visual Studio Code, open the pallete by clicking `CTRL + SHIFT + P`, search for "create function" and choose **Azure Functions: Create Function**:
+1. Open Visual Studio Code, open the pallete by clicking `CTRL + SHIFT + P` on Windows or `CMD + SHIFT + P` on Mac, search for "create function" and choose **Azure Functions: Create Function**:
     - A window will pop-up with a message "you must have a project open to create function", select **Create new project**. Create a new folder and select the folder for your project
     - Select **JavaScript** as a project language
     - Select **Timer Trigger** as a template for your project's first function.
@@ -100,72 +100,8 @@ To create subscription for Microsoft Graph Change Notifications, we'll need to m
     npm install @azure/identity @microsoft/microsoft-graph-client isomorphic-fetch readline-sync
     ```
 1. Create a folder under the project and name as **Shared**.
-1. Create a new file inside the **Shared** folder, name as **appSettings.js**. 
-1. Add the following code snippet inside the **AppSettings.js** and replace `AAD-app-client-id`, `AAD-app-client-secret` and `AAD-app-tenant-id` with the registered app details in the previous step:
-    ```javascript
-    const settings = {
-    'clientId': 'AAD-app-client-id',
-    'clientSecret': 'AAD-app-client-secret',
-    'tenantId': 'AAD-app-tenant-id',
-    'authTenant': 'common',
-    
-    };
-    
-    module.exports = settings;
-    ```
-1. Create a new file inside the **Shared** folder, name as **dateTimeFormat.js**, add the following code snippet inside the **dateTimeFormat.js** to define the expiration date of the subscription:
-    ```javascript
-    let month = undefined;
-    let day = undefined;
-    let hour = undefined;
-    let minute = undefined;
-    let second = undefined;
-    const date = new Date();
-    const year = date.getFullYear();
-    let expiryAsync = undefined;
-    async function getDateTimeAsync(){
-
-        if(date.getMonth() + 1 < 10){
-            let currentMonth = date.getMonth() + 1;
-            month = '0' + currentMonth;
-        }
-        else{
-            month = date.getMonth() + 1;  
-        }
-        if(date.getDate() < 10){
-            day = '0' + date.getDate();
-        }
-        else{
-            day = date.getDate();
-        }
-        if(date.getHours() + 1 < 10){
-            let hourlater = date.getHours() + 1;
-            hour = '0' + hourlater;
-        }
-        else{
-        hour = date.getHours() + 1;  
-        }
-        if(date.getMinutes() < 10){
-            minute = '0' + date.getMinutes();
-        }
-        else{
-            minute = date.getMinutes();
-        }
-        if(date.getSeconds() < 10){
-            second = '0' + date.getSeconds();
-        }
-        else{
-            second = date.getSeconds();
-        }
-    
-        expiryAsync = year + '-' + month + '-' + day + 'T' + hour + ':' + minute + ':' + second + 'Z'; 
-        return expiryAsync;
-    }
-
-    module.exports.getDateTimeAsync = getDateTimeAsync;
-    ```
-1. Create a new file inside the **Shared** folder, name as **Graph.js**.
-1. Add the following authentication code snippet inside the **Graph.js**:
+1. Create a new file inside the **Shared** folder, name as **dateTimeFormat.js**, copy the entire code in [dateTimeFormat.js](../Onboarding-Functions/Shared/dateTimeFormat.js) inside your file to define the expiration date of the subscription.
+1. Create a new file inside the **Shared** folder, name as **Graph.js**. Add the following authentication code snippet inside the **Graph.js**:
     ```javascript
      const expiry = require('./dateTimeFormat');
     const _settings = require('./appSettings');
@@ -184,9 +120,9 @@ To create subscription for Microsoft Graph Change Notifications, we'll need to m
 
     if (!_clientSecretCredential) {
         _clientSecretCredential = new azure.ClientSecretCredential(
-        _settings.tenantId,
-        _settings.clientId,
-        _settings.clientSecret
+        '<YOUR-AAD-APP-TENANT-ID>',
+        '<YOUR-AAD-APP-CLIENT-ID>',
+        '<YOUR-AAD-APP-CLIENT-SECRET>'
         );
     }
 
@@ -202,6 +138,7 @@ To create subscription for Microsoft Graph Change Notifications, we'll need to m
     }
     }
     ```
+    >Replace `<YOUR-AAD-APP-TENANT-ID>`, `<YOUR-AAD-APP-CLIENT-ID>` and `<YOUR-AAD-APP-CLIENT-SECRET>` with the registered app details in the previous step
 
 1. Add the following function inside **Graph.js** to make a REST API request to Microsoft Graph `/subscriptions` endpoint and create a subscription to track new users:
 
@@ -224,7 +161,7 @@ To create subscription for Microsoft Graph Change Notifications, we'll need to m
     }
     module.exports.postSubscriptionAsync = postSubscriptionAsync;
     ```
-    > In notificationUrl, make sure to replace <YOUR-VAULT-URI> with the vault uri, <YOUR-KEY-VAULT-SECRET-NAME> with the secret name and <YOUR-TENANT-ID> with the tenant id that you copied from the Key Vault.
+    > In notificationUrl, make sure to replace `<YOUR-VAULT-URI>` with the vault uri, `<YOUR-KEY-VAULT-SECRET-NAME>` with the secret name and `<YOUR-TENANT-ID>` with the tenant id that you copied from the Key Vault.
 
 
 1. Go to **SubscriptionFunction > index.js** and copy the following references on top of the page:
@@ -236,15 +173,6 @@ To create subscription for Microsoft Graph Change Notifications, we'll need to m
 1. In the **index.js**, copy the following code snippet inside the function to trigger the subscription every 61 minutes:
     ```javascript
         const subscription = await graph.postSubscriptionAsync();
-        
-        //Optional
-        console.log(`Subscription: ${subscription.id}`);
-        console.log(`  Resource: ${subscription.resource}`);
-        console.log(`  ChangeType: ${subscription.changeType}`);
-        console.log(`  NotificationUrl: ${subscription.notificationUrl}`);
-        console.log(`  ExpirationDateTime: ${subscription.expirationDateTime}`);
-        console.log(`  ClientState: ${subscription.clientState}`);
-        console.log(`  LatestSupportedTlsVersion: ${subscription.latestSupportedTlsVersion}`);
     ```
 1. Go to **local.settings.json**, replace the existing code with the code snippet below:
     ```json
@@ -273,7 +201,7 @@ When subscription function runs successfully, it will create a subscription for 
 ## ♾️ Exercise: Create Onboarding Function
 We'll create a second function in the project to receive change notifications from Event Hubs when there is a new user created in the Azure Active Directory and add new user in Onboarding team on Microsoft Teams.
 
-1. Open the patlete on Visual Studio by clicking `CTRL + SHIFT + P`, search for "create function" and choose **Azure Functions: Create Function**:
+1. Open the patlete on Visual Studio by clicking `CTRL + SHIFT + P`  on Windows or `CMD + SHIFT + P` on Mac, search for "create function" and choose **Azure Functions: Create Function**:
     - Select **Azure Event Hub trigger** as a template for your function
     - Name your Event Hub trigger as **OnboardingFunction** and press enter
     - Select **+ Create new local app setting**
