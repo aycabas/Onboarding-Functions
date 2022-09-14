@@ -42,6 +42,20 @@ This sample shows how to get new users in the Azure Active Directory and add the
     ```
     >Make sure that Microsoft Azure Storage Emulator is running in the background.
 
+## Debug your project
+To debug the onboarding functions, you need run the functions locally and create a new user in Azure Active Directory to see if the new user is added automatically in Microsoft Teams Onboarding team.
+
+1. Open the terminal in Visual Studio Code and run your functions with the following command:
+    ```
+    func host start
+    ```
+    >Make sure that Microsoft Azure Storage Emulator is running in the background.
+
+1. Go to [Azure Portal](https://portal.azure.com) and select Azure Active Directory from the left pane and go to **Users**. Select **+ New user** and **Create new user**. Fill in the details.
+
+1. Once the *OnboardingFunction* triggered successfully, you should be able to see the newly added user as a member of the Onboarding team on Microsoft Teams.
+![new member in Onboarding team on Microsoft Teams](/images/new-member-onboarding.png)
+
 ## Code Structure
 
 - **SubscriptionFunction:** Subscribing to  Microsoft Graph `users` change notifications, notifications will be delivered to Azure Event Hubs.

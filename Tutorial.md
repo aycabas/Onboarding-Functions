@@ -255,7 +255,7 @@ We'll create a second function in the project to receive change notifications fr
     ```
 
 ## 🚀 Debug your onboarding experience
-To debug our onboarding experience, we'll need run our functions locally and create a new user in Azure Active Directory to see if the new user added automaticallt in Microsoft Teams Onboarding team.
+To debug our onboarding experience, we'll need run our functions locally and create a new user in Azure Active Directory to see if the new user is added automatically in Microsoft Teams Onboarding team.
 
 1. Open the terminal in Visual Studio Code and run your functions with the following command:
     ```
