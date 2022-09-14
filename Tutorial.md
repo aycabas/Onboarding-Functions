@@ -100,10 +100,10 @@ To create subscription for Microsoft Graph Change Notifications, we'll need to m
     npm install @azure/identity @microsoft/microsoft-graph-client isomorphic-fetch readline-sync
     ```
 1. Create a folder under the project and name as **Shared**.
-1. Create a new file inside the **Shared** folder, name as **dateTimeFormat.js**, copy the entire code in [dateTimeFormat.js](../Onboarding-Functions/Shared/dateTimeFormat.js) inside your file to define the expiration date of the subscription.
+1. Create a new file inside the **Shared** folder, name as **dateTimeFormat.js**, copy the entire code in [dateTimeFormat.js](../Shared/dateTimeFormat.js) inside your file to define the expiration date of the subscription.
 1. Create a new file inside the **Shared** folder, name as **Graph.js**. Add the following authentication code snippet inside the **Graph.js**:
     ```javascript
-     const expiry = require('./dateTimeFormat');
+    const expiry = require('./dateTimeFormat');
     const _settings = require('./appSettings');
     require('isomorphic-fetch');
     const azure = require('@azure/identity');
