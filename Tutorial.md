@@ -95,7 +95,7 @@ To create subscription for Microsoft Graph Change Notifications, we'll need to m
     - Specify schedule as `0 */61 * * * *` and press enter
     - Select **Open in current window** and press enter.
 
-1. Select **Terminal** from the bar on top and select **New Terminal**. Run the following commands in the terminal to install the dependencies:
+1. Select **Terminal** from the menu bar on top and select **New Terminal**. Run the following commands in the terminal to install the dependencies:
     ```
     npm install @azure/identity @microsoft/microsoft-graph-client isomorphic-fetch readline-sync
     ```
