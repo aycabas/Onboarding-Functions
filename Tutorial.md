@@ -104,7 +104,6 @@ To create subscription for Microsoft Graph Change Notifications, we'll need to m
 1. Create a new file inside the **Shared** folder, name as **Graph.js**. Add the following authentication code snippet inside the **Graph.js**:
     ```javascript
     const expiry = require('./dateTimeFormat');
-    const _settings = require('./appSettings');
     require('isomorphic-fetch');
     const azure = require('@azure/identity');
     const graph = require('@microsoft/microsoft-graph-client');
@@ -114,10 +113,6 @@ To create subscription for Microsoft Graph Change Notifications, we'll need to m
     let _expiry = undefined;
     
     function ensureGraphForAppOnlyAuth() {
-    if (!_settings) {
-        throw new Error('Settings cannot be undefined');
-    }
-
     if (!_clientSecretCredential) {
         _clientSecretCredential = new azure.ClientSecretCredential(
         '<YOUR-AAD-APP-TENANT-ID>',

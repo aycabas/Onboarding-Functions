@@ -1,24 +1,17 @@
 const expiry = require('./dateTimeFormat');
-const _settings = require('./appSettings');
 require('isomorphic-fetch');
 const azure = require('@azure/identity');
 const graph = require('@microsoft/microsoft-graph-client');
 const authProviders = require('@microsoft/microsoft-graph-client/authProviders/azureTokenCredentials');
 let _clientSecretCredential = undefined;
 let _appClient = undefined;
-let _expiry = undefined;
 let _memberId = undefined;
 function ensureGraphForAppOnlyAuth() {
-
-  if (!_settings) {
-    throw new Error('Settings cannot be undefined');
-  }
-
   if (!_clientSecretCredential) {
     _clientSecretCredential = new azure.ClientSecretCredential(
-      _settings.tenantId,
-      _settings.clientId,
-      _settings.clientSecret
+      '<YOUR-AAD-APP-TENANT-ID>',
+      '<YOUR-AAD-APP-CLIENT-ID>',
+      '<YOUR-AAD-APP-CLIENT-SECRET>'
     );
   }
 
