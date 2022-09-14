@@ -1,4 +1,4 @@
-# Build seamless automations to boost productivity with Microsoft Graph, Event Hubs and Functions
+# Build seamless automations to boost productivity with Microsoft Graph, Azure Event Hubs and Functions
 Every day millions of people spend their precious time in productivity tools. What if you use data and intelligence behind the Microsoft applications (Microsoft Teams, Outlook, and many other Office apps) to build seemsless automations and custom apps to boost productivity? In this post, we'll build a seamsless onboarding experience to new employees joining a company with the power of Microsoft Graph. 
 
 ## 📝 What We'll Cover
@@ -67,13 +67,13 @@ To get Microsoft Graph Change Notifications delivered to Azure Event Hubs, we'll
 1. Select **Overview** tab from the left pane and copy the **Vault URI**.
 
 ## 🪡 Exercise: Subscribe to `users` resource to receive change notifications by using Azure Functions
-To start receiving Microsoft Graph Change Notifications, we'll need to create subscription to the resource that we'd like to track. We'll use Azure Logic Apps to create subscription.
+To start receiving Microsoft Graph Change Notifications, we'll need to create subscription to the resource that we'd like to track. We'll use Azure Functions to create subscription.
 
 To create subscription for Microsoft Graph Change Notifications, we'll need to make a http post request to `https://graph.microsoft.com/v1.0/subscriptions`. Microsoft Graph requires Azure Active Directory authentication make API calls. First, we'll need to register an app to Azure Active Directory, and then we will make the Microsoft Graph Subscription API call with Azure Functions.
 
 ### 1️⃣ Create an app in Azure Active Directory
 1. In the [Azure Portal](https://portal.azure.com), go to **Azure Active Directory** and select **App registrations** from the left pane and select **+ New registration**. Fill in the details for the new App registration form as below:
-    - Name: Graph Subscription Flow Auth
+    - Name: Graph Subscription Auth
     - Supported account types: *Accounts in any organizational directory (Any Azure AD directory - Multitenant) and personal Microsoft accounts (e.g. Skype, Xbox)*
     - Select **Register**.
 1. Go to newly registered app in Azure Active Directory, select **API permissions**:
